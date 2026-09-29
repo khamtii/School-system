@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================= LOGIN PAGE ================= -->
+  <section id="loginPage" class="login-page">
+    <form id="loginForm" class="login-card" novalidate>
+      <div class="crest" aria-hidden="true">📘</div>
+      <h1>Telecity Academy</h1>
+      <p class="muted">Instructor sign in</p>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" autocomplete="username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" autocomplete="current-password" required />
+
+      <p id="loginError" class="error" role="alert"></p>
+
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
+      <p class="hint">Demo: admin / 12345 &nbsp;or&nbsp; teacher / teacher123</p>
+    </form>
+  </section>
+
+  <!-- ================= DASHBOARD ================= -->
+  <section id="dashboard" class="dashboard hidden">
+    <header class="topbar">
+      <div>
+        <h1>Greenfield School</h1>
+        <p id="welcomeMessage" class="welcome"></p>
+      </div>
+      <button id="logoutBtn" class="btn btn-light">Logout</button>
+    </header>
+
+    <main class="container">
+
+      <!-- Statistics -->
+      <section class="stats">
+        <div class="stat">
+          <span class="stat-value" id="totalStudents">0</span>
+          <span class="stat-label">Total students</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="averageScore">0</span>
+          <span class="stat-label">Average score</span>
+        </div>
+        <div class="stat stat-wide">
+          <span class="stat-label">Students per class</span>
+          <div id="classCounts" class="class-counts"></div>
+        </div>
+      </section>
+
+      <div class="layout">
+        <!-- Add / Edit Student form -->
+        <section class="panel">
+          <h2 id="formTitle">Add Student</h2>
+          <form id="studentForm" novalidate>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required />
+
+            <div class="row">
+              <div>
+                <label for="age">Age</label>
+                <input type="number" id="age" min="5" max="30" required />
+              </div>
+              <div>
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                  <option value="">Select</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="studentClass">Class</label>
+                <select id="studentClass" required>
+                  <option value="">Select</option>
+                  <option>JSS1</option>
+                  <option>JSS2</option>
+                  <option>JSS3</option>
+                  <option>SS1</option>
+                  <option>SS2</option>
+                  <option>SS3</option>
+                </select>
+              </div>
+              <div>
+                <label for="score">Score (0–100)</label>
+                <input type="number" id="score" min="0" max="100" required />
+              </div>
+            </div>
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" required />
+
+            <p id="formError" class="error" role="alert"></p>
+
+            <div class="form-actions">
+              <button type="submit" id="submitBtn" class="btn btn-primary">Add Student</button>
+              <button type="button" id="cancelEditBtn" class="btn btn-light hidden">Cancel</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Student table -->
+        <section class="panel">
+          <div class="table-head">
+            <h2>Students</h2>
+            <input type="search" id="searchInput" placeholder="Search by name…" aria-label="Search students by name" />
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Class</th>
+                  <th>Subject</th>
+                  <th>Score</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="studentTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </section>
+
+  <!-- ================= VIEW STUDENT MODAL ================= -->
+  <div id="studentModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <div class="modal-card">
+      <button id="closeModalBtn" class="modal-close" aria-label="Close">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
